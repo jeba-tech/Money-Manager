@@ -6,16 +6,48 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Simple bank</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
+
 
 <body>
       <header>
-
+            <h1 class="text-center text-4xl font-semibold text-sky-500 mt-6">Income Calculation Bank</h1>
       </header>
       <main>
             <section>
+                  <div class="flex">
+                        <div class="w-9/12 m-12">
+                              <img src="images/money.jpg" alt="">
+
+                        </div>
+                        <div class="bg-lime-100	w-9/12 mx-16 p-8 mt-12 text-center font-semibold">
+                              <h3 class="mb-4 text-xl	">Income</h3>
+                              <h1 class="mb-4 mr-6 inline">Income :</h1><input type="text"
+                                    class="p-1 border border-orange-900">
+                              <h3 class="mb-4 mt-4">Expenses</h3>
+                              <h1 class="mb-4 mr-4 inline-block">Food : </h1><input type="text"
+                                    class="p-1 border border-orange-900">
+                              <br>
+                              <h1 class="mb-4 mr-4 inline-block">Rent : </h1><input type="text"
+                                    class="p-1 border border-orange-900"><br>
+                              <h1 class="mb-4 mr-4 inline-block"> Clothes :</h1><input type="text"
+                                    class="p-1 border border-orange-900"><br>
+                              <button class="mb-4 bg-yellow-700 px-5 py-2 rounded text-white">Calculate</button>
+                              <h1 class="mb-4">Total Expenses: </h1>
+                              <h1 class="mb-4">Balance: </h1>
+                              <h1 class="mb-4 mr-4">Save : <input class="p-1 border border-orange-900" type="text"> %
+                                    <button class="bg-yellow-700 px-5 py-2 rounded text-white">Save</button>
+                              </h1>
+                              <h1 class="mb-4">Saving Amount:</h1>
+                              <h1>Remaining Balance:</h1>
+                        </div>
+                  </div>
 
             </section>
+
+
       </main>
 </body>
 
