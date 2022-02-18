@@ -32,12 +32,18 @@ function updateBalance(amount) {
 
 }
 
-
+function getCurrentSave() {
+      const save = document.getElementById('saving');
+      const saveText = save.innerText;
+      const convertSaveText = parseFloat(saveText);
+      return convertSaveText;
+}
 
 function getSave(total, amount) {
       const save = document.getElementById(total);
-      const saveText = save.innerText;
-      const convertSaveText = parseFloat(saveText);
+      // const saveText = save.innerText;
+      // const convertSaveText = parseFloat(saveText);
+      const convertSaveText = getCurrentSave();
       save.innerText = convertSaveText + (amount * 100);
 
 }
@@ -58,11 +64,24 @@ document.getElementById('calc-button').addEventListener('click', function () {
             updateTotalExpense('balance', income);
 
       }
+      else if (income < 0) {
+            alert("Negative amount of money is not valid");
+      }
+      else {
+            alert("Please enter the valid amount of money in income");
+      }
       const amount = getInputValue('food-input') + getInputValue('rent-input') + getInputValue('clothes-input');
+
       if (amount > 0) {
             //handle total expense event
             updateTotalExpense('total-expenses', amount);
             updateBalance(amount);
+      }
+      else if (amount < 0) {
+            alert("Negative amount of money is not valid !! Please enter the valid amount of money");
+      }
+      else {
+            alert("Please enter the valid amount of money in food, rent and clothes expenses");
       }
 
 
@@ -71,14 +90,36 @@ document.getElementById('calc-button').addEventListener('click', function () {
 
 document.getElementById('save-button').addEventListener('click', function () {
       const save = getInputValue('save-input');
+
+      //const currentBalance = updateNewBalance();
+      //const currentsave = getCurrentSave();
+
+      // if (save < currentBalance) {
+      //       alert("You have not enough amount of balance for saving");
+      // }
+      debugger;
       if (save > 0) {
+
+            // if (currentBalance > (save * 1000)) {
+            //       getSave('saving', save);
+
+            //       remainingBalance(save);
+            // }
+            // else {
+            //       alert("You have not enough amount of balance for saving");
+            // }
             getSave('saving', save);
-            debugger;
 
             remainingBalance(save);
-
-
       }
-
+      // else if (currentBalance < currentsave) {
+      //       alert("You have not enough amount of balance for saving");
+      // }
+      else if (save < 0) {
+            alert("Negative amount of money is not valid !! Please enter the valid percentage of money");
+      }
+      else {
+            alert("Please enter the valid percentage of money");
+      }
 
 })
