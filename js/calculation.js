@@ -72,10 +72,13 @@ document.getElementById('calc-button').addEventListener('click', function () {
       }
       const amount = getInputValue('food-input') + getInputValue('rent-input') + getInputValue('clothes-input');
 
-      if (amount > 0) {
+      if (amount > 0 && amount < income) {
             //handle total expense event
             updateTotalExpense('total-expenses', amount);
             updateBalance(amount);
+      }
+      else if (amount > income) {
+            alert("Expense can not be greater than income.Please check amount of expenses");
       }
       else if (amount < 0) {
             alert("Negative amount of money is not valid !! Please enter the valid amount of money");
@@ -97,7 +100,7 @@ document.getElementById('save-button').addEventListener('click', function () {
       // if (save < currentBalance) {
       //       alert("You have not enough amount of balance for saving");
       // }
-      debugger;
+
       if (save > 0) {
 
             // if (currentBalance > (save * 1000)) {
