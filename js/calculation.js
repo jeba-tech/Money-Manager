@@ -13,8 +13,6 @@ function updateTotalExpense(total, amount) {
       const convertExpensesText = parseFloat(expensesText);
       expenses.innerText = convertExpensesText + amount;
 
-
-
 }
 
 function updateNewBalance() {
@@ -26,7 +24,6 @@ function updateNewBalance() {
 
 function updateBalance(amount) {
       const balance = document.getElementById('balance');
-
       const convertBalanceText = updateNewBalance();
       balance.innerText = convertBalanceText - amount;
 
@@ -55,25 +52,38 @@ function remainingBalance(input) {
       const updatebalance = updateNewBalance();
       savee.innerText = convertSaveText + updatebalance - (input * 100);
 }
+
+function getInnerText(id) {
+      const text = document.getElementById(id);
+      const innerText = text.innerText;
+      const convertInnerText = parseFloat(innerText);
+      return convertInnerText;
+}
 document.getElementById('calc-button').addEventListener('click', function () {
       // handle input event  
       const income = getInputValue('income-input');
-      if (income > 0) {
+      const food = getInputValue('food-input');
+      const rent = getInputValue('rent-input');
+      const clothes = getInputValue('clothes-input');
+
+      if (income > 0 || food > 0 || rent > 0 || clothes > 0) {
             //handle balance event
 
             updateTotalExpense('balance', income);
 
       }
-      else if (income < 0) {
+      else if (income < 0 || food < 0 || rent < 0 || clothes < 0) {
             alert("Negative amount of money is not valid");
       }
       else {
             alert("Please enter the valid amount of money in income");
       }
-      const amount = getInputValue('food-input') + getInputValue('rent-input') + getInputValue('clothes-input');
+
+      const amount = food + rent + clothes;
 
       if (amount > 0 && amount < income) {
             //handle total expense event
+
             updateTotalExpense('total-expenses', amount);
             updateBalance(amount);
       }
@@ -94,14 +104,16 @@ document.getElementById('calc-button').addEventListener('click', function () {
 document.getElementById('save-button').addEventListener('click', function () {
       const save = getInputValue('save-input');
 
-      //const currentBalance = updateNewBalance();
-      //const currentsave = getCurrentSave();
+      const currentBalance = updateNewBalance();
+      // debugger
+      //const currentSave = getInnerText('save-input') * 1000;
+      const currentSave = getCurrentSave();
 
       // if (save < currentBalance) {
       //       alert("You have not enough amount of balance for saving");
       // }
 
-      if (save > 0) {
+      if (save > 0 && currentBalance > currentSave) {
 
             // if (currentBalance > (save * 1000)) {
             //       getSave('saving', save);
@@ -115,9 +127,9 @@ document.getElementById('save-button').addEventListener('click', function () {
 
             remainingBalance(save);
       }
-      // else if (currentBalance < currentsave) {
-      //       alert("You have not enough amount of balance for saving");
-      // }
+      else if (currentBalance < currentSave) {
+            alert("You have not enough amount of balance for saving");
+      }
       else if (save < 0) {
             alert("Negative amount of money is not valid !! Please enter the valid percentage of money");
       }
