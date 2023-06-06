@@ -73,10 +73,22 @@ document.getElementById('calc-button').addEventListener('click', function () {
 
       }
       else if (income < 0 || food < 0 || rent < 0 || clothes < 0) {
-            alert("Negative amount of money is not valid");
+            Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Negative amount of money is not valid',
+
+            })
+            // alert("Negative amount of money is not valid");
+            return;
       }
       else {
-            alert("Please enter the valid amount of money in income");
+            Swal.fire(
+                  ' ',
+                  'Please enter the valid amount of money in income, food, rent and clothes expenses!!',
+                  'question'
+            )
+            // alert("Please enter the valid amount of money in income");
       }
 
       const amount = food + rent + clothes;
@@ -88,14 +100,28 @@ document.getElementById('calc-button').addEventListener('click', function () {
             updateBalance(amount);
       }
       else if (amount > income) {
-            alert("Expense can not be greater than income.Please check amount of expenses");
+            Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Expense can not be greater than income.Please check amount of expenses',
+
+            })
+            // alert("Expense can not be greater than income.Please check amount of expenses");
+
       }
       else if (amount < 0) {
-            alert("Negative amount of money is not valid !! Please enter the valid amount of money");
+            Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Negative amount of money is not valid !! Please enter the valid amount of money in food, rent and clothes expenses',
+
+            })
+            // alert("Negative amount of money is not valid !! Please enter the valid amount of money");
+            return;
       }
-      else {
-            alert("Please enter the valid amount of money in food, rent and clothes expenses");
-      }
+      // else {
+      //       alert("Please enter the valid amount of money in food, rent and clothes expenses");
+      // }
 
 
 });
@@ -127,14 +153,30 @@ document.getElementById('save-button').addEventListener('click', function () {
 
             remainingBalance(save);
       }
-      else if (currentBalance < currentSave) {
-            alert("You have not enough amount of balance for saving");
+      else if (currentBalance < currentSave || currentBalance < 0) {
+            Swal.fire(
+                  ' ',
+                  'You have not enough amount of balance for saving!!',
+                  'question'
+            )
+            // alert("You have not enough amount of balance for saving");
       }
       else if (save < 0) {
-            alert("Negative amount of money is not valid !! Please enter the valid percentage of money");
+            Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Negative amount of money is not valid !! Please enter the valid percentage of money!',
+
+            })
+            // alert("Negative amount of money is not valid !! Please enter the valid percentage of money");
       }
       else {
-            alert("Please enter the valid percentage of money");
+            Swal.fire(
+                  ' ',
+                  'Please enter the valid percentage of money!!',
+                  'question'
+            )
+            // alert("Please enter the valid percentage of money");
       }
 
 })
