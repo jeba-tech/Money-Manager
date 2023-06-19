@@ -66,6 +66,14 @@ document.getElementById('calc-button').addEventListener('click', function () {
       const rent = getInputValue('rent-input');
       const clothes = getInputValue('clothes-input');
 
+      if (isNaN(income) || isNaN(food) || isNaN(rent) || isNaN(clothes)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid amount of money in income, food, rent, and clothes expenses.',
+            });
+            return;
+        }
       if (income > 0 || food > 0 || rent > 0 || clothes > 0) {
             //handle balance event
 
@@ -130,17 +138,37 @@ document.getElementById('calc-button').addEventListener('click', function () {
 document.getElementById('save-button').addEventListener('click', function () {
       const save = getInputValue('save-input');
 
-      const currentBalance = updateNewBalance();
-      // debugger
-      //const currentSave = getInnerText('save-input') * 1000;
-      const currentSave = getCurrentSave();
+     
 
       // if (save < currentBalance) {
       //       alert("You have not enough amount of balance for saving");
       // }
+      if (isNaN(save) ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter a valid amount of money.',
+            });
+            return;
+        }
+        const currentBalance = updateNewBalance();
+        // debugger
+        //const currentSave = getInnerText('save-input') * 1000;
+        const currentSave = getCurrentSave();
+      if (save > 0 && currentBalance > save) {
 
-      if (save > 0 && currentBalance > currentSave) {
 
+            // if (save <= currentBalance) {
+            //       getSave('saving', save);
+            //       remainingBalance(save);
+            //   } else {
+            //       Swal.fire(
+            //           '',
+            //           'You do not have enough balance for saving.',
+            //           'question'
+            //       );
+            //   }
+      
             // if (currentBalance > (save * 1000)) {
             //       getSave('saving', save);
 
@@ -153,7 +181,7 @@ document.getElementById('save-button').addEventListener('click', function () {
 
             remainingBalance(save);
       }
-      else if (currentBalance < currentSave || currentBalance < 0) {
+      else if (currentBalance < save || currentBalance < 0) {
             Swal.fire(
                   ' ',
                   'You have not enough amount of balance for saving!!',
